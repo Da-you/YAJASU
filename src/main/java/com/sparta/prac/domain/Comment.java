@@ -1,6 +1,7 @@
 package com.sparta.prac.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sparta.prac.dto.CommentRequestDto;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -15,7 +16,7 @@ public class Comment extends Timestamped {
     private String content;
     @JoinColumn(name = "postId", nullable = false)
     @ManyToOne
-//    @JsonIgnore
+    @JsonIgnore
     public Post post;
 
     public Comment() {
@@ -49,5 +50,9 @@ public class Comment extends Timestamped {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void updateComment(CommentRequestDto requestDto) {
+        this.content = requestDto.getContent();
     }
 }

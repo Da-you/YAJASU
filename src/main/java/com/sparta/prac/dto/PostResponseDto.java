@@ -12,8 +12,9 @@ public class PostResponseDto {
     private String author;
     private String title;
     private String content;
-    private List<CommentResponseDto> commentList;
     private LocalDateTime createdTime;
+    private List<Comment> commentList;
+
 
 
     public Long getId() {
@@ -32,22 +33,23 @@ public class PostResponseDto {
         return content;
     }
 
-    public List<CommentResponseDto> getCommentList() {
-        return commentList;
-    }
-
     public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
 
-    public PostResponseDto(Post post, List<CommentResponseDto> responseDto) {
+
+    public PostResponseDto(Post post) {
         this.id = post.getId();
         this.author = post.getAuthor();
+        this.title = post.getTitle();
         this.content = post.getContent();
-        this.title = post.getContent();
-        this.commentList = responseDto;
         this.createdTime = post.getCreatedAt();
+        this.commentList = post.getCommentList();
+
 
     }
 }

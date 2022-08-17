@@ -54,14 +54,14 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        List<Comment> commentAll = commentRepository.findAllByPost(post);
-        List<CommentResponseDto> commentList = new ArrayList<>();
-
-        for (int i = 0; i < commentAll.size(); i++) {
-            Comment comment = commentAll.get(i);
-            CommentResponseDto responseDto = new CommentResponseDto(comment);
-            commentList.add(responseDto);
-        }
+//        List<Comment> commentAll = commentRepository.findAllByPost(post);
+//        List<CommentResponseDto> commentList = new ArrayList<>();
+//
+//        for (int i = 0; i < commentAll.size(); i++) {
+//            Comment comment = commentAll.get(i);
+//            CommentResponseDto responseDto = new CommentResponseDto(comment);
+//            commentList.add(responseDto);
+//        }
         return new PostResponseDto(post);
     }
 
