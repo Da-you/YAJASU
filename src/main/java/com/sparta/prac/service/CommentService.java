@@ -48,6 +48,7 @@ public class CommentService {
         }
         return commentList;
     }
+    @Transactional
     public String updateComment(Long id, CommentRequestDto requestDto){
         Comment comment = commentRepository.findById(id).orElseThrow(
                 ()-> new IllegalArgumentException("존재하지 않는 게시글 입니다.")

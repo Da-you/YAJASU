@@ -12,4 +12,5 @@ public class CommentRequestDto {
     public String getContent() {
         return content;
     }
+
 }

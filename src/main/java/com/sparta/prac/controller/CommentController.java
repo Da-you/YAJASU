@@ -29,9 +29,9 @@ public class CommentController {
         return commentService.readCommentList(postId);
     }
 
-    @PutMapping("/api/comment/{commentId}")
-    public String updateComment(@PathVariable Long commentId, @RequestBody CommentRequestDto requestDto){
-        return commentService.updateComment(commentId,requestDto);
+    @PutMapping("/api/comment/{id}")
+    public String updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto){
+        return commentService.updateComment(id,requestDto);
     }
 }
 
