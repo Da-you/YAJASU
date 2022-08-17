@@ -1,7 +1,9 @@
 package com.sparta.prac.controller;
 
+import com.sparta.prac.dto.CreatPostResponseDto;
 import com.sparta.prac.dto.PostRequestDto;
 import com.sparta.prac.dto.PostResponseDto;
+import com.sparta.prac.dto.PostsResponseDto;
 import com.sparta.prac.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,7 @@ public class PostController {
     }
 
     @PostMapping("/api/post") //리퀘스트 바디로 DTO에 있는 정보입력값을 받는다.
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
+    public CreatPostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
         if (requestDto.getTitle() == "" || requestDto.getContent() == "") {
             throw new IllegalArgumentException("1자 이상의 글을 적어주세요");
         }
@@ -26,7 +28,7 @@ public class PostController {
 
     //레포지토리에서 저장된 포스트리스트를 조회 한다.
     @GetMapping("/api/post")
-    public List<PostResponseDto> viewPost() {
+    public List<PostsResponseDto> viewPost() {
         return postService.viewPost();
     }
 

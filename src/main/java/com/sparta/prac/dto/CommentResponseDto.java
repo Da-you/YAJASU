@@ -5,18 +5,18 @@ import lombok.Setter;
 
 @Setter
 public class CommentResponseDto {
-    private Long postId;
+    private Long id;
     private String content;
 
 
     public CommentResponseDto(Comment comment) {
-        this.postId = comment.getId();
+        this.id = comment.getId();
         this.content = comment.getContent();
     }
 
 
-    public Long getPostId() {
-        return postId;
+    public Long getId() {
+        return id;
     }
 
     public String getContent() {

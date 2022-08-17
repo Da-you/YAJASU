@@ -51,9 +51,17 @@ public class CommentService {
     @Transactional
     public String updateComment(Long id, CommentRequestDto requestDto){
         Comment comment = commentRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("존재하지 않는 게시글 입니다.")
+                ()-> new IllegalArgumentException("존재하지 않는 댓글 입니다.")
         );
         comment.updateComment(requestDto);
         return "수정 완료";
+    }
+
+    public String deleteComment(Long id){
+        Comment comment = commentRepository.findById(id).orElseThrow(
+                ()-> new IllegalArgumentException("존재하지 않는 댓글 입니다.")
+        );
+        commentRepository.delete(comment);
+        return "삭제 완료";
     }
 }

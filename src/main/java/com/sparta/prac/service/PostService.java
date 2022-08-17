@@ -1,12 +1,10 @@
 package com.sparta.prac.service;
 
 import com.sparta.prac.domain.Comment;
-import com.sparta.prac.dto.CommentResponseDto;
+import com.sparta.prac.dto.*;
 import com.sparta.prac.repository.CommentRepository;
 import com.sparta.prac.repository.PostRepository;
 import com.sparta.prac.domain.Post;
-import com.sparta.prac.dto.PostRequestDto;
-import com.sparta.prac.dto.PostResponseDto;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,20 +28,21 @@ public class PostService {
 
 
     @Transactional
-    public PostResponseDto createPost(PostRequestDto requestDto) {
+    public CreatPostResponseDto createPost(PostRequestDto requestDto) {
         Post post = new Post(requestDto);
         Post post1 = postRepository.save(post);
-        return new PostResponseDto(post1);
+        return new CreatPostResponseDto(post1);
     }
 
     //전체 게시글 조회
-    public List<PostResponseDto> viewPost() {
+    public List<PostsResponseDto> viewPost() {
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
-        List<PostResponseDto> responseDtos = new ArrayList<>();
+        List<PostsResponseDto> responseDtos = new ArrayList<>();
 
         for (int i = 0; i < posts.size(); i++) {
             Post post = posts.get(i);
-            PostResponseDto responseDto = new PostResponseDto(post);
+            Integer commentListCnt = post.getCommentList().size();
+            PostsResponseDto responseDto = new PostsResponseDto(post,commentListCnt);
             responseDtos.add(responseDto);
         }
         return responseDtos;
